@@ -33,7 +33,7 @@ $(document).ready(function () {
             var isAnonymous = user.isAnonymous;
             console.log("user signed in?: ", isAnonymous);
             user_UID = user.uid;
-            console.log("user.uid: ", user.uid);
+
         } else {
             // FirebaseAuth.getInstance().signOut();
         }
