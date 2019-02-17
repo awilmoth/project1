@@ -259,18 +259,7 @@ overflow: auto;
         text-decoration: none;
     }
 
-
-
-
-
-   
-  
-
-
-
-
-    
- 
-
-
-
+.card-img-top {
+    background-image: url("../images/pexels-photo-261949.jpeg");
+    background-size: cover;
+}
