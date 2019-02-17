@@ -31,7 +31,7 @@ $(document).ready(function () {
         if (user) {
             // User is signed in.
             var isAnonymous = user.isAnonymous;
-            console.log("user signed in?: ", isAnonymous);
+            // console.log("user signed in?: ", isAnonymous);
             user_UID = user.uid;
 
         } else {
@@ -41,19 +41,19 @@ $(document).ready(function () {
 
     // User listener - retreives user's saved preferences and favorites
     database.ref("/users").on("value", function (userSnapshot) {
-        console.log("Query exists? ", userSnapshot.child(user_UID).child("query").exists());
-        console.log("CatID exists? ", userSnapshot.child(user_UID).child("query").exists());
-        console.log("userID saved? ", userSnapshot.child(user_UID).exists());
-        console.log("Favorites saved? ", userSnapshot.child(user_UID).child("favorites").val());
+        // console.log("Query exists? ", userSnapshot.child(user_UID).child("query").exists());
+        // console.log("CatID exists? ", userSnapshot.child(user_UID).child("query").exists());
+        // console.log("userID saved? ", userSnapshot.child(user_UID).exists());
+        // console.log("Favorites saved? ", userSnapshot.child(user_UID).child("favorites").val());
         if (userSnapshot.child(user_UID).child("lastsearch").exists()) {
-            console.log("lastsearch: ", userSnapshot.child(user_UID).val().lastsearch);
+            // console.log("lastsearch: ", userSnapshot.child(user_UID).val().lastsearch);
             query = userSnapshot.child(user_UID).val().lastsearch;
             newsFinder.search(query);
         };
         if (userSnapshot.child(user_UID).child("favorites").exists()) {
             console.log("favorites: ", userSnapshot.child(user_UID).child("favorites").val());
             var favs = userSnapshot.child(user_UID).child("favorites").val();
-            console.log("fav len", Object.keys(favs));
+            // console.log("fav len", Object.keys(favs));
             // https://stackoverflow.com/questions/684672/how-do-i-loop-through-or-enumerate-a-javascript-object
             $("#fav-items").empty();
             Object.keys(favs).forEach(function(key) {
@@ -80,7 +80,7 @@ $(document).ready(function () {
         // get value of 'this' selected dropdown
         var selectedID = $(this).attr("id");
         catID = $(this).attr("value");
-        console.log("ID, CatID: ", selectedID, catID);
+        // console.log("ID, CatID: ", selectedID, catID);
         newsFinder.search(selectedID);
         if (selectedID !== '') {
             database.ref("/users").child(user_UID).update({ lastsearch: selectedID });
