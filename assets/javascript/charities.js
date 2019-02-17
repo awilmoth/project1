@@ -24,13 +24,13 @@ var newsFinder = {
         newsURL += '&language=en';
         // Everything queries
         newsURL += '&q=' + query;
-        console.log('newsURL: ', newsURL);
+        // console.log('newsURL: ', newsURL);
         // news AJAX call
         $.ajax({
             url: newsURL,
             method: "GET"
         }).then(function (newsresponse) {
-            console.log("news AJAX: ", newsresponse);
+            // console.log("news AJAX: ", newsresponse);
             newsData = newsresponse; // save newsresponse to global variable newsData to be used later
             newsFinder.newsGenerator(newsresponse, query);
         });
@@ -53,7 +53,7 @@ var newsFinder = {
             url: newsURL,
             method: "GET"
         }).then(function (newsresponse) {
-            console.log("news AJAX: ", newsresponse);
+            // console.log("news AJAX: ", newsresponse);
             newsData = newsresponse; // save newsresponse to global variable newsData to be used later
             newsFinder.newsGenerator(newsresponse, query);
         });
@@ -84,7 +84,7 @@ var newsFinder = {
         // display single article using item as an index to get info from newsData
         $articleContainer = $("#articleContainer");
         var article = newsData.articles[item];
-        console.log(article.urlToImage);
+        // console.log(article.urlToImage);
         var $article = $("<div class='col-sm-12' data-article='" + i + "'>");
         var $articleIMG = $("<img class='article-img-top'>").attr({ "src": article.urlToImage, "style": "text-align: center" });
         var $articleBody = $("<div class='card-body'>");
@@ -114,13 +114,13 @@ var charityNavigator = {
         requestURL += "&rated=true";
         // requestURL += "&sort=RATING:DESC";
         requestURL += "&search=" + query;
-        console.log("Charity API URL: ", requestURL);
+        // console.log("Charity API URL: ", requestURL);
         // charity AJAX call
         $.ajax({
             url: requestURL,
             method: "GET"
         }).then(function (response) {
-            console.log("Charities Search: ", response);
+            // console.log("Charities Search: ", response);
             charityNavigator.charitiesGenerator(response);
         });
     },
@@ -160,13 +160,13 @@ var charityNavigator = {
         requestURL += "&rated=true";
         // requestURL += "&sort=RATING:DESC";
         requestURL += "&categoryID=" + id;
-        console.log('charURL CAT: ', requestURL);
+        // console.log('charURL CAT: ', requestURL);
         // charity AJAX call
         $.ajax({
             url: requestURL,
             method: "GET"
         }).then(function (response) {
-            console.log("Charities Search: ", response);
+            // console.log("Charities Search: ", response);
             charityNavigator.charitiesMainGenerator(response);
         });
     },
@@ -208,7 +208,7 @@ $(".dropdown-item").on("click", function (event) {
     // get value of 'this' selected dropdown
     selectedID = $(this).attr("id");
     catID = $(this).attr("value");
-    console.log("ID, CatID: ", selectedID, catID);
+    // console.log("ID, CatID: ", selectedID, catID);
     newsFinder.search(selectedID); // Everything Search
     // newsFinder.searchHeadlines(selectedID); // Headlines by Category search
     clearElements();
@@ -223,7 +223,7 @@ $(".Charity-dropdown-item").on("click", function (event) {
     charPage = 1;
     selectedID = $(this).attr("id"); // get value of 'this' selected dropdown
     catID = $(this).attr("value");
-    console.log("CatID: ", catID);
+    // console.log("CatID: ", catID);
     clearElements();
     showFav();
     charityNavigator.searchByCategory(catID);
@@ -253,7 +253,7 @@ $("#searchBtn").on("click", function (event) {
 $(document).on("click", ".news-card", function (event) {
     event.preventDefault();
     var articleNum = $(this).attr("data-article"); i
-    console.log(articleNum);
+    // console.log(articleNum);
 
     clearFav();
     newsFinder.articleGenerator(articleNum);
@@ -275,7 +275,7 @@ $(document).on("click", "#returnBtn", function (event) {
 $(document).on("click", ".savedFavBtn", function (event) {
     event.preventDefault();
     var query = $(this).attr("data-item");
-    console.log("data-item: ", query);
+    // console.log("data-item: ", query);
     newsFinder.search(query);
     charityNavigator.search(query);
     clearElements();
